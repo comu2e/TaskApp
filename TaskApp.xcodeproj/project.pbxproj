@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251B2D151D24150100524B86 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B2D141D24150100524B86 /* InputViewController.swift */; };
 		25BC4E6A1D20308C00D4605D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BC4E691D20308C00D4605D /* AppDelegate.swift */; };
 		25BC4E6C1D20308C00D4605D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BC4E6B1D20308C00D4605D /* ViewController.swift */; };
 		25BC4E6F1D20308C00D4605D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25BC4E6D1D20308C00D4605D /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		09380CA87F9C9ACC6FF25C58 /* Pods-TaskApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskApp/Pods-TaskApp.release.xcconfig"; sourceTree = "<group>"; };
+		251B2D141D24150100524B86 /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		25BC4E661D20308C00D4605D /* TaskApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25BC4E691D20308C00D4605D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25BC4E6B1D20308C00D4605D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				25BC4E6B1D20308C00D4605D /* ViewController.swift */,
 				25BC4E7F1D20337000D4605D /* Task.swift */,
 				25BC4E6D1D20308C00D4605D /* Main.storyboard */,
+				251B2D141D24150100524B86 /* InputViewController.swift */,
 				25BC4E701D20308C00D4605D /* Assets.xcassets */,
 				25BC4E721D20308C00D4605D /* LaunchScreen.storyboard */,
 				25BC4E751D20308C00D4605D /* Info.plist */,
@@ -223,6 +226,7 @@
 				25BC4E6C1D20308C00D4605D /* ViewController.swift in Sources */,
 				25BC4E801D20337000D4605D /* Task.swift in Sources */,
 				25BC4E6A1D20308C00D4605D /* AppDelegate.swift in Sources */,
+				251B2D151D24150100524B86 /* InputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
