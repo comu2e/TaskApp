@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,8 +19,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
-
-        
+//    storyboardで設定済み
+    @IBOutlet weak var searchbar: UISearchBar!
+    
+    var searchResults = [""]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,6 +57,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+//    検索窓
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        let search_text = searchbar.text!
+//
+//        let categorized_task = self.realm.objects(Task).filter("category='\(search_text)'")
+//        print(categorized_task.count)
+            print(taskArray.filter("category = '\(search_text)'"))
+
+//        検索処理 searchtextを引数としてrealmで検索をかける
+//        let results = Task.objectsWhere()
+        
+    }
+
+    
+    
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count  // ←追加する
     }
@@ -64,6 +87,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         // Cellに値を設定する.
         let task = taskArray[indexPath.row]
+       
+        
         cell.textLabel?.text = task.title
         
         let formatter = NSDateFormatter()

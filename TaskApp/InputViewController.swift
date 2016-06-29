@@ -13,9 +13,14 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+//    カテゴリーフォームの追加
+    @IBOutlet weak var categoryForm: UITextField!
     
     let realm = try! Realm()
     var task:Task!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +31,15 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
+//        カテゴリー追加
+        categoryForm.text = task.category
+        
+//        contexformに枠線，丸みをつける
+        contentsTextView.layer.borderWidth = 0.5
+        contentsTextView.layer.borderColor = UIColor.blackColor().CGColor
+        contentsTextView.layer.masksToBounds = true
+          contentsTextView.layer.cornerRadius = 10.0
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -33,6 +47,9 @@ class InputViewController: UIViewController {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
+//            画面が戻るときにカテゴリーも追加する
+            self.task.category = self.categoryForm.text!
+            
             self.realm.add(self.task, update: true)
         }
         
@@ -61,7 +78,14 @@ class InputViewController: UIViewController {
         
         notification.fireDate = task.date
         notification.timeZone = NSTimeZone.defaultTimeZone()
-        notification.alertBody = "\(task.title)"
+//        カテゴリーも通知で出てくるようにする
+        if task.category != ""{
+            notification.alertBody = "\(task.title)　\n Category : \(task.category)"
+        }
+        else{
+            notification.alertBody = "\(task.title)"
+        }
+        
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.userInfo = ["id":task.id]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
