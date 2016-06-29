@@ -20,10 +20,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
 
-    
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -112,6 +109,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
-    
-    
+    //ViewController画面にもどってくるメソッド
+    //保存ボタンを押すと戻ってくる
+    @IBAction func unwindToTop(segue: UIStoryboardSegue) {
+    }
+
 }
+    

@@ -67,4 +67,6 @@ class InputViewController: UIViewController {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
     }
+    @IBAction func saveAndBackToTable(sender: AnyObject) {
+    }
 }

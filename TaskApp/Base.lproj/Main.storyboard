@@ -124,6 +124,14 @@
                                     <!--2016-06-29 14:41:06 +0000-->
                                 </date>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Dk-Sv-T1s">
+                                <rect key="frame" x="285" y="314" width="30" height="30"/>
+                                <state key="normal" title="保存"/>
+                                <connections>
+                                    <action selector="saveAndBackToTable:" destination="Eih-lU-V1m" eventType="touchUpInside" id="m06-uI-ojf"/>
+                                    <segue destination="3KB-ud-gce" kind="unwind" unwindAction="unwindToTop:" id="wZe-7L-A4D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -135,10 +143,12 @@
                             <constraint firstItem="oGv-sv-hQm" firstAttribute="leading" secondItem="vfG-rL-Abp" secondAttribute="leadingMargin" id="XZ2-dN-SGL"/>
                             <constraint firstItem="7bd-iH-I1y" firstAttribute="leading" secondItem="vfG-rL-Abp" secondAttribute="leadingMargin" id="XaI-VE-OB6"/>
                             <constraint firstItem="zNK-Q5-IOD" firstAttribute="leading" secondItem="vfG-rL-Abp" secondAttribute="leadingMargin" constant="6" id="Yg3-jO-gb1"/>
+                            <constraint firstItem="1Dk-Sv-T1s" firstAttribute="centerX" secondItem="vfG-rL-Abp" secondAttribute="centerX" id="aAD-Vf-2xX"/>
                             <constraint firstItem="ohb-Fs-2sT" firstAttribute="leading" secondItem="vfG-rL-Abp" secondAttribute="leadingMargin" id="eik-ch-nkM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ohb-Fs-2sT" secondAttribute="trailing" id="gxA-ji-Mi7"/>
                             <constraint firstItem="e7q-1e-jlf" firstAttribute="top" secondItem="UIq-sn-o4r" secondAttribute="bottom" constant="10" id="ncY-JP-3dN"/>
                             <constraint firstItem="e7q-1e-jlf" firstAttribute="leading" secondItem="vfG-rL-Abp" secondAttribute="leadingMargin" id="nwq-8D-5DN"/>
+                            <constraint firstItem="1Dk-Sv-T1s" firstAttribute="top" secondItem="ohb-Fs-2sT" secondAttribute="bottom" constant="10" id="uJe-ys-VeU"/>
                             <constraint firstItem="ohb-Fs-2sT" firstAttribute="top" secondItem="7bd-iH-I1y" secondAttribute="bottom" constant="10" id="xm9-YW-NpO"/>
                         </constraints>
                     </view>
@@ -149,8 +159,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Liq-LV-WTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3KB-ud-gce" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="994" y="1175"/>
+            <point key="canvasLocation" x="923" y="1409"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xMg-u4-3DN">
