@@ -19,12 +19,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
+    
+    
+    
 //    storyboardで設定済み
     @IBOutlet weak var searchbar: UISearchBar!
+    
+
+    
+    
 //    TaskArray保存用
     var storeTask = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
     
-    var categorizedTask = try! Realm().objects(Task)
 
     
     
@@ -34,7 +40,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
 //        検索バーに何も入力されていなくでもReturnキーが押せるようにしておく
         searchbar.enablesReturnKeyAutomatically = false
-        self.categorizedTask = self.taskArray
         
         
     }
@@ -67,30 +72,28 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.reloadData()
     }
     
-//    検索窓
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-//        searchBar.endEditing(true)
-//        検索バーの文字を取得
+        searchbar.resignFirstResponder()
+        //        searchBar.endEditing(true)
+        //        検索バーの文字を取得
         let search_text = searchbar.text!
-//        storeTaskにtaskArrayを保存しておく
-        self.storeTask = self.taskArray
-       
-        let categorizedTask = self.taskArray.filter("category = '\(search_text)'")
-        print(categorizedTask)
-        self.taskArray = categorizedTask
-          tableView.reloadData()
-        self.taskArray = self.storeTask
-        
+        taskArray = realm.objects(Task).filter("category = '\(search_text)'").sorted("date", ascending: false)
+        tableView.reloadData()
     }
+    
+    
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        print(tableView)
-
+        
+       self.taskArray = self.storeTask
         tableView.reloadData()
         
     }
  
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchbar.resignFirstResponder()
+
+        self.taskArray = self.storeTask
+
         tableView.reloadData()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
