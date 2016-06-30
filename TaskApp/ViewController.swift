@@ -18,16 +18,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // DB内のタスクが格納されるリスト。
     // 日付近い順\順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
-    let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
+    var taskArray = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
 //    storyboardで設定済み
     @IBOutlet weak var searchbar: UISearchBar!
+//    TaskArray保存用
+    var storeTask = try! Realm().objects(Task).sorted("date", ascending: false)   // ←追加
     
-    var searchResults = [""]
+    var categorizedTask = try! Realm().objects(Task)
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        検索バーに何も入力されていなくでもReturnキーが押せるようにしておく
+        searchbar.enablesReturnKeyAutomatically = false
+        self.categorizedTask = self.taskArray
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,21 +70,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //    検索窓
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+//        searchBar.endEditing(true)
+//        検索バーの文字を取得
         let search_text = searchbar.text!
-//
-//        let categorized_task = self.realm.objects(Task).filter("category='\(search_text)'")
-//        print(categorized_task.count)
-            print(taskArray.filter("category = '\(search_text)'"))
-
-//        検索処理 searchtextを引数としてrealmで検索をかける
-//        let results = Task.objectsWhere()
+//        storeTaskにtaskArrayを保存しておく
+        self.storeTask = self.taskArray
+       
+        let categorizedTask = self.taskArray.filter("category = '\(search_text)'")
+        print(categorizedTask)
+        self.taskArray = categorizedTask
+          tableView.reloadData()
+        self.taskArray = self.storeTask
         
     }
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        print(tableView)
 
-    
-    
-    
-    
+        tableView.reloadData()
+        
+    }
+ 
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        tableView.reloadData()
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count  // ←追加する
     }
@@ -87,7 +104,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         // Cellに値を設定する.
         let task = taskArray[indexPath.row]
-       
         
         cell.textLabel?.text = task.title
         
@@ -96,6 +112,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         let dateString:String = formatter.stringFromDate(task.date)
         cell.detailTextLabel?.text = dateString
+        
+        
         
         return cell
     }
